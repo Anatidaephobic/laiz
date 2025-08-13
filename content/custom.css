@@ -4,9 +4,6 @@
   color: inherit;
 }
 
-#liveUpdateContactInfo {
-}
-
 body {
   background-color: #4C4C4C !important;
   color: inherit;
@@ -93,15 +90,10 @@ body {
   maxSize: 450.00 !important;
 }
 
-.paginationLinks, .pagination, #liveUpdatePagination {
-}
-
 .thumb {
   border: 1px solid #000000 !important;
 }
 
-#liveUpdateSiteTitle {
-}
 
 .borderBottom {
   border-bottom: 1px solid #787878 !important;
