@@ -32,12 +32,12 @@
 	</div>
 	<div id="stage">
 		<div class="login-wrapper borderTopLeft borderBottomRight">
-			<h1 class="textColor">Enter password</h1>
-			<p class="textColor">This page is protected. Enter the password to continue.</p>
+			<h1 class="textColor">Digite a senha</h1>
+			<p class="textColor">Esta página está protegida. Digite a senha para continuar.</p>
 			<form id="loginForm">
-				<input id="password" type="password" placeholder="Password" autocomplete="current-password" />
-				<button type="submit">Unlock</button>
-				<div id="error" class="login-error">Incorrect password. Try again.</div>
+				<input id="password" type="password" placeholder="Password" autocomplete="current-password" style="width: 70%;"/>
+				<button type="submit">Entrar</button>
+				<div id="error" class="login-error">Senha incorreta. Tente novamente.</div>
 			</form>
 		</div>
 	</div>
@@ -57,7 +57,7 @@
 
 	var auth = window.__simpleAuth || {};
 	var AUTH_KEY = auth.AUTH_KEY || 'site_auth_ok';
-	var AUTH_PASSWORD = auth.AUTH_PASSWORD || 'changeMe123';
+	var AUTH_PASSWORD = auth.AUTH_PASSWORD || 'LaizGuimaraes';
 
 	// If already authorized, go straight to redirect
 	try {
