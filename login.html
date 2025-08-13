@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+<title>Login</title>
+<link rel="stylesheet" type="text/css" media="screen" title="Custom Settings" href="content/custom.css" >
+<link rel="stylesheet" type="text/css" media="screen" title="Custom Settings" href="./resources/css/master.css" >
+
+
+<script type="text/javascript" src="./resources/js/auth.js">
+</script>
+<style type="text/css">
+	/* Minimal, inline tweaks so we don't touch global CSS */
+	.login-wrapper { max-width: 420px; margin: 80px auto; padding: 24px; background: #fff; border: 1px solid #ddd; }
+	.login-wrapper h1 { margin: 0 0 12px 0; }
+	.login-wrapper p { margin: 6px 0; }
+	.login-wrapper input[type=password] { width: 100%; padding: 8px; font-size: 16px; }
+	.login-wrapper button { margin-top: 10px; padding: 8px 14px; font-size: 14px; cursor: pointer; }
+	.login-error { color: #c00; display: none; margin-top: 8px; }
+</style>
+</head>
+
+
+<body>
+
+
+<div id="wrapper_thumb">
+	<div id="sitetitle">
+		<h1 class="textColor">Protected Gallery</h1>
+	</div>
+	<div id="stage">
+		<div class="login-wrapper borderTopLeft borderBottomRight">
+			<h1 class="textColor">Enter password</h1>
+			<p class="textColor">This page is protected. Enter the password to continue.</p>
+			<form id="loginForm">
+				<input id="password" type="password" placeholder="Password" autocomplete="current-password" />
+				<button type="submit">Unlock</button>
+				<div id="error" class="login-error">Incorrect password. Try again.</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+(function () {
+	function getParam(name) {
+		var m = new RegExp('(?:^|&)' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '=([^&]*)').exec(window.location.search.replace(/^\?/, ''));
+		return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+	}
+
+	function redirectTo(target) {
+		if (!target) { target = 'index.html'; }
+		window.location.replace(target);
+	}
+
+	var auth = window.__simpleAuth || {};
+	var AUTH_KEY = auth.AUTH_KEY || 'site_auth_ok';
+	var AUTH_PASSWORD = auth.AUTH_PASSWORD || 'changeMe123';
+
+	// If already authorized, go straight to redirect
+	try {
+		if ((window.sessionStorage.getItem(AUTH_KEY) === '1')) {
+			return redirectTo(getParam('redirect'));
+		}
+	} catch (e) {}
+
+	document.getElementById('loginForm').addEventListener('submit', function (e) {
+		e.preventDefault();
+		var entered = (document.getElementById('password').value || '').trim();
+		if (entered === AUTH_PASSWORD) {
+			try { window.sessionStorage.setItem(AUTH_KEY, '1'); } catch (e) {}
+			redirectTo(getParam('redirect'));
+		} else {
+			document.getElementById('error').style.display = 'block';
+		}
+	});
+})();
+</script>
+</body>
+</html>
+
+
+
+
